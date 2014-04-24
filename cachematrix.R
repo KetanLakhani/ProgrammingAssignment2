@@ -4,7 +4,7 @@
 ##  If the inverse has already been calculated (and the matrix has not changed), then the cachesolve
 ## will retrive the inverse from its cache
 
-## makeCacheMatrix is a fucntion that contains the plan for caching a matrix
+## makeCacheMatrix is a function that contains the plan for caching a matrix
 
 makeCacheMatrix <- function(x = matrix()) {
   
@@ -12,7 +12,8 @@ makeCacheMatrix <- function(x = matrix()) {
   m <- NULL
 
 ## this function uses the superassign to assign x and m to 
-## the global environment
+## an environment one level up
+## and this will feed the get function
   set <- function(y) {
     x <<- y
     m <<- NULL
@@ -35,7 +36,7 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## cache solve is a function that looks for the inverse of the matrix in cache
+## cacheSolve is a function that looks for the inverse of the matrix in cache
 ## If the informaiton is found in cache, then it will return the cached information
 ## with a messeage cached data
 ## if the information os not found in cache, then it will calcualte the inverse
@@ -43,7 +44,7 @@ makeCacheMatrix <- function(x = matrix()) {
 
 cacheSolve <- function(x, ...) {
 ## This checks whether m is in cache, if it is then it will get cached data and 
-## return m, otherwise it will calcualte the inverse and return that
+## return m, otherwise it will calcualte the inverse and return that as m
   m <- x$getInverse()
   if(!is.null(m)) {
     message("getting cached data")
